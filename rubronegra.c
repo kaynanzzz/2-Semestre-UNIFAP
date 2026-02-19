@@ -254,10 +254,10 @@ void delete(int key) {
         fixDelete(&root, x);
 }
 
-/* ===================== TRAVESSIAS ===================== */
+/* ===================== TRAVESSIAS COM CORES ===================== */
 void preorder(RBNode *node) {
     if (node != NIL) {
-        printf("%d ", node->data);
+        printf("%d%c ", node->data, (node->color == RED ? 'R' : 'B'));
         preorder(node->left);
         preorder(node->right);
     }
@@ -266,7 +266,7 @@ void preorder(RBNode *node) {
 void inorder(RBNode *node) {
     if (node != NIL) {
         inorder(node->left);
-        printf("%d ", node->data);
+        printf("%d%c ", node->data, (node->color == RED ? 'R' : 'B'));
         inorder(node->right);
     }
 }
@@ -275,7 +275,7 @@ void postorder(RBNode *node) {
     if (node != NIL) {
         postorder(node->left);
         postorder(node->right);
-        printf("%d ", node->data);
+        printf("%d%c ", node->data, (node->color == RED ? 'R' : 'B'));
     }
 }
 
@@ -287,9 +287,9 @@ void menu() {
         printf("1. Inserir\n");
         printf("2. Buscar\n");
         printf("3. Remover\n");
-        printf("4. Pre-Ordem\n");
-        printf("5. Em Ordem\n");
-        printf("6. Pos-Ordem\n");
+        printf("4. Pre-Ordem (com cores)\n");
+        printf("5. Em Ordem (com cores)\n");
+        printf("6. Pos-Ordem (com cores)\n");
         printf("0. Sair\n");
         printf("Opcao: ");
         scanf("%d", &op);
@@ -314,14 +314,17 @@ void menu() {
                 delete(value);
                 break;
             case 4:
+                printf("Pre-Ordem: ");
                 preorder(root);
                 printf("\n");
                 break;
             case 5:
+                printf("Em Ordem: ");
                 inorder(root);
                 printf("\n");
                 break;
             case 6:
+                printf("Pos-Ordem: ");
                 postorder(root);
                 printf("\n");
                 break;
@@ -339,3 +342,5 @@ int main() {
     menu();
     return 0;
 }
+}
+
